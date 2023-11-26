@@ -1,4 +1,5 @@
 import { getUser } from "/src/js/services/user.js"
+import { getEvents } from "/src/js/services/events.js"
 import { getRepositories } from "/src/js/services/repositories.js"
 
 import { user } from "/src/js/objects/user.js"
@@ -6,8 +7,7 @@ import { screen } from "/src/js/objects/screen.js"
 
 document.getElementById('btn-search').addEventListener('click', () => {
     const userName = document.getElementById('input-search').value
-    if (validateEmptyInput(userName)) return
-    getUserData(userName)
+    if (validateEmptyInput(userName)) return getUserData(userName)
 })
 
 
@@ -32,13 +32,18 @@ function validateEmptyInput(userName) {
 async function getUserData(userName) {
 
     const userResponse = await getUser(userName)
-    console.log(userResponse);
-    if (userResponse.message === "API rate limit exceeded for 191.242.173.191. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)") {
+
+    if (userResponse.message === "Not Found") {
         screen.renderNotFound()
         return
     }
 
+    const eventsResponse = await getEvents(userName)
+    user.setEvents(eventsResponse)
+
     const repositoriesResponse = await getRepositories(userName)
+    console.log(repositoriesResponse);
+
 
     user.setInfo(userResponse)
     user.setRepositories(repositoriesResponse)
