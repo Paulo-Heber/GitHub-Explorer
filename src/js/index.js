@@ -1,5 +1,5 @@
 import { getUser } from "/src/js/services/user.js"
-import { getEvents } from "./src/js/services/events.js"
+import { getEvents } from "../src/js/services/events.js"
 import { getRepositories } from "/src/js/services/repositories.js"
 
 import { user } from "/src/js/objects/user.js"
