@@ -9,7 +9,6 @@ document.getElementById('btn-search').addEventListener('click', () => {
     if (validateEmptyInput(userName)) return getUserData(userName)
 })
 
-
 document.getElementById('input-search').addEventListener('keyup', (e) => {
     const userName = e.target.value
     const key = e.which || e.keyCode
@@ -41,8 +40,6 @@ async function getUserData(userName) {
     user.setEvents(eventsResponse)
 
     const repositoriesResponse = await getRepositories(userName)
-    console.log(repositoriesResponse);
-
 
     user.setInfo(userResponse)
     user.setRepositories(repositoriesResponse)
