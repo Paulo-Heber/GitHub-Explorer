@@ -1,4 +1,4 @@
-# Pesquisando-GitHub-API
+# GitHub Explorer
 
 <img src="./src/gifs/Pesquisando Github.gif" alt="Descrição" style="border-radius: 15px;" />
 
